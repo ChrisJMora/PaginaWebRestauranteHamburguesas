@@ -1,0 +1,78 @@
+﻿@using PaginaWebRestauranteHamburguesas.Areas.AdminProductos.ModelViews;
+@using PaginaWebRestauranteHamburguesas.ModelViews;
+
+@model ModelViewMensaje<ModelViewCombo>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - PaginaWebRestauranteHamburguesas</title>
+</head>
+<body>
+
+    <h1>Modificar comida</h1>
+
+    <form method="post">
+
+        <div id="formDatosCombo">
+
+            <div>
+                <input type="text" id="txtNombreCombo" placeholder="Nombre del combo"
+                       name="nombreCombo" value="@Model.entity.Nombre">
+                <label for="txtNombreCombo">Nombre*</label>
+            </div>
+            <div>
+                <input type="text" id="txtDescripcionCombo" placeholder="Descripción del combo"
+                       name="descripcionCombo" value="@Model.entity.Descripcion">
+                <label for="txtDescripcionCombo">Descripción*</label>
+            </div>
+            <div>
+                @{
+                    double descuento = @Model.entity.Descuento/100; }
+                <input type="number" id="txtDescuentoCombo" placeholder="Descuento del combo"
+                       name="descuentoCombo" step="0.1" value="@descuento">
+                <label for="txtDescuentoCombo">Descuento*</label>
+            </div>
+            <select name="categoriaCombo">
+                @foreach (var categoria in Model.entity.CategoriasCombo.Categorias)
+                {
+                    @if (Model.entity.CategoriaComboId == categoria.Id)
+                    {
+                        <option value="@categoria.Id" selected>@categoria.Etiqueta</option>
+                    }
+                    else
+                    {
+                        <option value="@categoria.Id">@categoria.Etiqueta</option>
+                    }
+                }
+            </select>
+
+
+            <label for="formDatosCombo">Ingrese los datos del combo:</label>
+        </div>
+
+        <button type="submit" 
+            asp-action="ModificarCombo"
+            asp-route-idCombo="@Model.entity.ComboId">
+            Modificar
+        </button>
+
+    </form>
+
+    <div>
+        <a asp-action="PaginaPrincipalCombo">Regresar</a>
+    </div>
+
+    @if (Model is null)
+    {
+        @("Say Hi")
+    }
+    else
+    {
+        @(Model.mensaje)
+    }
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+﻿@using PaginaWebRestauranteHamburguesas.Areas.AdminUsuarios.ModelViews;
+
+@model ModelViewUsuarios
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Administración de usuarios</title>
+</head>
+<body>
+    <h1>Administración de usuarios</h1>
+    <div>
+        <form method="post">
+            <select name="tipoUsuario">
+                @foreach (var tipo in Model.ModelViewTipos.Tipos)
+                {
+                    <option value="@tipo.Id">@tipo.Nombre</optEtiqueta                }
+            </select>
+            <button asp-route="crearUsuarios" type="submit">
+                Crear Usuario
+            </button>
+        </form>
+    </div>
+    <div>
+        <form method="post">
+            <input placeholder="Ingrese el nombre de usuario..." name="caracteres">
+            <button asp-controller="Usuario" asp-action="BuscarUsuario"  type="submit">
+                Buscar
+            </button>
+            <button>Cancelar</button>
+        </form>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <th>Nombre de usuario</th>
+                <th>Estado</th>
+                <th>Tipo</th>
+                <th>Fecha de Creación</th>
+                <th>Fecha de Acceso</th>
+                <th>Hora de Acceso</th>
+                <th>Acciones</th>
+            </tr>
+            @foreach (var usuario in Model.Usuarios)
+            {
+                <tr>
+                    <td>@usuario.Nombre</td>
+                    <td>@usuario.Estado</td>
+                    <td>@usuario.Tipo</td>
+                    <td>@usuario.FechaCreacion</td>
+                    <td>@usuario.FechaAcceso</td>
+                    <td>@usuario.HoraAcceso</td>
+                    <td>
+                        <a asp-action="ModificarUsuarios" 
+                        asp-route-idUsuario="@usuario.UsuarioId"
+                        asp-route-tipoUsuario="@usuario.TipoId">
+                            Editar
+                        </a>
+                        <a asp-action="EliminarUsuario"
+                        asp-route-idUsuario="@usuario.UsuarioId">
+                            Eliminar
+                        </a>
+                        <a asp-action="ModificarEstadoUsuario"
+                        asp-route-IdUsuario="@usuario.UsuarioId">
+                            Cambiar estado
+                        </a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>

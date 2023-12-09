@@ -1,0 +1,72 @@
+﻿@using PaginaWebRestauranteHamburguesas.Areas.AdminProductos.ModelViews;
+@using PaginaWebRestauranteHamburguesas.ModelViews;
+
+@model ModelViewMensaje<ModelViewComida>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - PaginaWebRestauranteHamburguesas</title>
+</head>
+<body>
+
+    <h1>Modificar comida</h1>
+
+    <form method="post">
+
+        <div id="formDatosComida">
+
+            <div>
+                <input type="text" id="txtNombreComida" placeholder="Nombre de la comida"
+                       name="nombreComida" value="@Model.entity.Nombre">
+                <label for="txtNombreComida">Nombre*</label>
+            </div>
+            <div>
+                <input type="text" id="txtDescripcionComida" placeholder="Descripción de la comida"
+                       name="descripcionComida" value="@Model.entity.Descripcion">
+                <label for="txtDescripcionComida">Descripción*</label>
+            </div>
+            <div>
+                <input type="number" id="txtPrecioComida" placeholder="Precio de la comida"
+                       name="precioComida" step="0.1" value="@Model.entity.Precio">
+                <label for="txtPrecioComida">Precio*</label>
+            </div>
+            <select name="categoriaComida">
+                @foreach (var categoria in Model.entity.CategoriasComida.Categorias)
+                {
+                    if (Model.entity.CategoriaId == categoria.Id)
+                    {
+                        <option value="@categoria.Id" selected>@categoria.Nombre</option>
+             Etiqueta }
+                    else
+                    {
+                        <option value="@categoria.Id">@categoria.Nombre</option>
+                    }
+     Etiqueta     }
+            </select>
+            <label for="formDatosComida">Ingrese los datos de la comida:</label>
+        </div>
+
+        <button asp-route-idComida="@Model.entity.ComidaId" type="submit">
+            Modificar
+        </button>
+
+    </form>
+
+    <div>
+        <a asp-action="PaginaPrincipalComida">Regresar</a>
+    </div>
+
+    @if (Model is null)
+    {
+        @("Say Hi")
+    }
+    else
+    {
+        @(Model.mensaje)
+    }
+
+</body>
+</html>

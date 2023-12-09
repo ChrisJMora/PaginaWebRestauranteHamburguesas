@@ -1,0 +1,26 @@
+﻿@model string
+
+@{ string mensaje = (Model == null) ? "Say Hi" : Model.ToString(); }
+
+<!DOCTYPE html>
+<html style="margin:0; padding:0" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - 2dBurguer</title>
+</head>
+<body>
+
+    <h1>Bienvenido, @Sesion.Singleton().UsuarioLogeado</h1>
+
+    <div>
+        <a asp-route="usuarios">
+            Administración de Usuarios
+        </a>
+        <a asp-area="AdminProductos" asp-controller="Comida" asp-action="PaginaPrincipalComida">
+            Administración de Productos
+        </a>
+    </div>
+</body>
+</html>
+ 

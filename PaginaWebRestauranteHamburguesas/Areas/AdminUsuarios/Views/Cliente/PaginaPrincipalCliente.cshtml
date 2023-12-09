@@ -1,0 +1,57 @@
+﻿@using PaginaWebRestauranteHamburguesas.Areas.AdminUsuarios.ModelViews;
+
+@model ModelViewClientes
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - PaginaWebRestauranteHamburguesas</title>
+</head>
+<body>
+
+    <h1>Administración de Clientes</h1>
+
+    <div>
+        <table>
+            <tr>
+                <th>Nombre y Apellido</th>
+                <th>Fecha de Nacimiento</th>
+                <th>Género</th>
+                <th>Contacto</th>
+                <th></th>
+            </tr>
+            @foreach (var cliente in Model.Clientes)
+            {
+                <tr>
+                    <td>@cliente.Nombre @cliente.Apellido</td>
+                    <td>@cliente.FechaNacimiento</td>
+                    <td>@cliente.Genero</td>
+                    <td>
+                        <ul>
+                            <li>@cliente.Mail</li>
+                            <li>@cliente.Telefono</li>
+                        </ul>
+                    </td>
+                    @if (cliente.TieneOrdenes)
+                    {
+                        <td>
+                            <a asp-route="ordenes"
+                               asp-route-idCliente="@cliente.ClienteId">
+                                Ordenes
+                            </a>
+                        </td>
+                    }
+                    else
+                    {
+                        <td>Sin ordenes</td>
+                    }
+                </tr>
+            }
+
+        </table>
+    </div>
+
+</body>
+</html>

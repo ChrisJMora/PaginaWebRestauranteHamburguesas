@@ -1,0 +1,67 @@
+﻿@using PaginaWebRestauranteHamburguesas.Areas.AdminProductos.ModelViews;
+@using PaginaWebRestauranteHamburguesas.ModelViews;
+
+@model ModelViewMensaje<ModelViewCategoriasCombo>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - PaginaWebRestauranteHamburguesas</title>
+</head>
+<body>
+
+    <h1>Agregar combo</h1>
+
+    <form method="post">
+
+        <div id="formDatosCombo">
+
+            <div>
+                <input type="text" id="txtNombreCombo" placeholder="Nombre del combo"
+                       name="nombreCombo">
+                <label for="txtNombreCombo">Nombre*</label>
+            </div>
+            <div>
+                <input type="text" id="txtDescripcionCombo" placeholder="Descripción del combo"
+                       name="descripcionCombo">
+                <label for="txtDescripcionCombo">Descripción*</label>
+            </div>
+            <div>
+                <input type="number" id="txtDescuentoCombo" placeholder="Descuento del combo"
+                       name="descuentoCombo" step="0.1">
+                <label for="txtDescuentoCombo">Descuento*</label>
+            </div>
+            <select name="categoriaCombo">
+                @foreach (var categoria in Model.entity.Categorias)
+                {
+                    <option value="@categoria.Id">@categoria.Etiqueta</option>
+                }
+            </select>
+
+
+            <label for="formDatosCombo">Ingrese los datos del combo:</label>
+        </div>
+
+        <button type="submit">
+            Agregar
+        </button>
+
+    </form>
+
+    <div>
+        <a asp-action="PaginaPrincipalCombo">Regresar</a>
+    </div>
+
+    @if (Model is null)
+    {
+        @("Say Hi")
+    }
+    else
+    {
+        @(Model.mensaje)
+    }
+
+</body>
+</html>

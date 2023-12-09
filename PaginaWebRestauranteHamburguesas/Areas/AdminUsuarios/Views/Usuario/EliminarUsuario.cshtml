@@ -1,0 +1,53 @@
+﻿@using PaginaWebRestauranteHamburguesas.ModelViews;
+@using PaginaWebRestauranteHamburguesas.Areas.AdminUsuarios.ModelViews;
+
+@model ModelViewMensaje<ModelViewUsuario>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - PaginaWebRestauranteHamburguesas</title>
+</head>
+<body>
+
+    <h1>Eliminar cuenta</h1>
+
+    <div id="labelNombreUsuario">
+        <p>@Model.entity.Nombre</p>
+        <label for="labelNombeUsuario">Usuario:</label>
+    </div>
+
+    <form method="post">
+        <div id="formCredencialesAdmin">
+            <div>
+                <input type="text" id="txtNombreUsuarioAdmin" placeholder="Nombre de usuario"
+                       name="nombreUsuarioAdmin">
+                <label for="txtNombreUsuarioAdmin">Usuario*</label>
+            </div>
+            <div>
+                <input type="password" id="txtPasswordAdmin" placeholder="Contraseña"
+                       name="passwordAdmin">
+                <label for="txtPasswordAdmin">Contraseña*</label>
+            </div>
+            <label for="formCredencialesAdmin">Ingrese las credenciales de una cuenta de administrador válida:</label>
+        </div>
+        <button type="submit">Eliminar cuenta</button>
+    </form>
+
+    <div>
+        <a asp-route="usuarios">Regresar</a>
+    </div>
+
+    @if (Model.mensaje is null)
+    {
+        @("Say Hi")
+    }
+    else
+    {
+        @(Model.mensaje)
+    }
+
+</body>
+</html>

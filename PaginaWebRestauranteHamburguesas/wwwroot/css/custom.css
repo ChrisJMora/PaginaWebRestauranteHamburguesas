@@ -1,0 +1,48 @@
+﻿:root {
+    --tamanio: 30px;
+}
+
+html {
+    font-size: 16px;
+    font-family: cursive;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: beige;
+}
+
+.campo-texto {
+    display: flex;
+    flex-direction: column;
+    background-color: aqua;
+}
+
+.formulario {
+    display: flex;
+    width: 300px;
+    flex-direction: column;
+    padding: 10px;
+    gap: 10px;
+    background-color: blanchedalmond;
+    box-shadow: -15px 15px 20px tomato;   
+}
+
+label {
+    display: flex;
+    align-items: center;
+    height: var(--tamanio);
+}
+
+input {
+    display: flex;
+    align-items: center;
+    height: var(--tamanio);
+}
+
+button {
+    height: var(--tamanio);
+}

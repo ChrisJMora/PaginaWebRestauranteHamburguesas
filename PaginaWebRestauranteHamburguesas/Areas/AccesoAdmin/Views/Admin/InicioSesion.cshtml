@@ -1,0 +1,34 @@
+﻿@model string
+
+@{ string mensaje = (Model == null) ? "Say Hi" : Model.ToString(); }
+
+<!DOCTYPE html>
+<html style="margin:0; padding:0" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - 2dBurguer</title>
+</head>
+<body>
+    <section>
+        <form method="post" class="formulario">
+            <div class="campo-texto">
+                <input type="text" id="txtNombreUsuario" placeholder="Nombre de Usuario"
+                       name="nombreUsuario">
+                <label for="txtNombreUsuario">Usuario</label>
+            </div>
+            <div class="campo-texto">
+                <input type="password" id="txtNombreUsuario" placeholder="Contraseña"
+                       name="password">
+                <label for="txtNombreUsuario">Contraseña</label>
+            </div>
+            <button asp-controller="Admin" asp-action="IniciarSesion"
+                    type="submit" class="btn btn-primary rounded-0 w-100">
+                Iniciar Sesión
+            </button>
+        </form>
+    </section>
+
+    <p>@(mensaje)</p>
+</body>
+</html>

@@ -1,0 +1,92 @@
+﻿@using PaginaWebRestauranteHamburguesas.ModelViews;
+@using PaginaWebRestauranteHamburguesas.Areas.AdminUsuarios.ModelViews;
+
+@model ModelViewMensaje<ModelViewUsuario>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - PaginaWebRestauranteHamburguesas</title>
+</head>
+<body>
+
+    <h1>Modificar cuenta de administrador</h1>
+
+    <div id="labelNombreUsuario">
+        <p>@Model.entity.Nombre</p>
+        <label for="labelNombeUsuario">Usuario:</label>
+    </div>
+
+    <form method="post">
+
+        <div id="formCredencialesAdmin">
+            <div>
+                <input type="text" id="txtNombreUsuarioAdmin" placeholder="Nombre de usuario"
+                       name="nombreUsuarioAdmin">
+                <label for="txtNombreUsuarioAdmin">Usuario*</label>
+            </div>
+            <div>
+                <input type="password" id="txtPasswordAdmin" placeholder="Contraseña"
+                       name="passwordAdmin">
+                <label for="txtPasswordAdmin">Contraseña*</label>
+            </div>
+            <label for="formCredencialesAdmin">Ingrese las credenciales de una cuenta de administrador válida:</label>
+        </div>
+
+        <div id="formCredencialesUsuarioNuevo">
+            <div>
+                <input type="text" id="txtNombreUsuario" placeholder="Nombre de usuario"
+                       name="nombreUsuario" value="@Model.entity.Nombre">
+                <label for="txtNombreUsuario">Usuario*</label>
+            </div>
+            <div>
+                <input type="password" id="txtPassword" placeholder="Contraseña"
+                       name="password">
+                <label for="txtPassword">Contraseña*</label>
+            </div>
+            <label for="formCredencialesUsuarioNuevo">Ingrese las credenciales de la nueva cuenta de administrador:</label>
+        </div>
+
+        <div id="selectEstadosUsuario">
+            <div>
+                <select name="estadoUsuario">
+                    @foreach (var estado in Model.entity.EstadosUsuario.Estados)
+                    {
+                        if (Model.entity.EstadoId == estado.Id)
+                        {
+                            <option value="@estado.Id" selected>@estado.Nombre</option>
+         Etiqueta         }
+                        else
+                        {
+                            <option value="@estado.Id">@estado.Nombre</option>
+                      Etiqueta                   }
+                </select>
+            </div>
+            <label for="selectEstadosUsuario">Escoja un estado:</label>
+        </div>
+        
+        <button type="submit" 
+        asp-route-idUsuario="@Model.entity.UsuarioId"
+        asp-route-oldNombreUsuario="@Model.entity.Nombre">
+            Modificar cuenta
+        </button>
+
+    </form>
+
+    <div>
+        <a asp-route="usuarios">Regresar</a>
+    </div>
+
+    @if (Model.mensaje is null)
+    {
+        @("Say Hi")
+    }
+    else
+    {
+        @(Model.mensaje)
+    }
+
+</body>
+</html>

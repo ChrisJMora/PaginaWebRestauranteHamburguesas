@@ -1,0 +1,102 @@
+﻿@using PaginaWebRestauranteHamburguesas.ModelViews;
+@using PaginaWebRestauranteHamburguesas.Areas.AdminUsuarios.ModelViews;
+
+@model ModelViewMensaje<ModelViewGeneros>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - PaginaWebRestauranteHamburguesas</title>
+</head>
+<body>
+
+    <h1>Crear cuenta de cliente</h1>
+
+    <form method="post">
+        <div id="formCredencialesAdmin">
+            <div>
+            <input type="text" id="txtNombreUsuarioAdmin" placeholder="Nombre de usuario"
+                    name="nombreUsuarioAdmin">
+            <label for="txtNombreUsuarioAdmin">Usuario*</label>
+            </div>
+            <div>
+                <input type="password" id="txtPasswordAdmin" placeholder="Contraseña"
+                        name="passwordAdmin">
+                <label for="txtPasswordAdmin">Contraseña*</label>
+            </div>
+            <label for="formCredencialesAdmin">Ingrese las credenciales de una cuenta de administrador válida:</label>
+        </div>
+            
+        <div id ="formDatosCliente">
+            <div>
+                <input type="text" id="txtNombreCliente" placeholder="Nombre"
+                       name="nombreCliente">
+                <label for="txtNombreCliente">Nombre*</label>
+            </div>
+            <div>
+                <input type="text" id="txtApellidoCliente" placeholder="Apellido"
+                       name="apellidoCliente">
+                <label for="txtApellidoCliente">Apellido*</label>
+            </div>
+            <div>
+                <input type="date" id="txtFnacimiento" placeholder="Fecha de Nacimiento"
+                       name="fNacimientoCliente">
+                <label for="txtFnacimiento">Fecha de nacimiento*</label>
+            </div>
+            <div>
+                <select name="generoCliente">
+                    @foreach (var genero in Model.entity.Generos)
+                    {
+                        <option value="@genero.Id">@genero.Etiqueta</option>
+                    }
+                </select>
+                <label for="generoCliente">Género</label>
+            </div>
+            <div>
+                <input type="text" id="txtTelefono" placeholder="Teléfono"
+                       name="telefono">
+                <label for="txtTelefono">Teléfono*</label>
+            </div>
+            <div>
+                <input type="email" id="txtMai" placeholder="Mail"
+                       name="mail">
+                <label for="txtMail">Mail*</label>
+            </div>
+            <label for="formDatosCliente">Ingrese los datos del cliente:</label>
+        </div>
+
+        <div id="formCredencialesUsuarioNuevo">
+            <div>
+                <input type="text" id="txtNombreUsuario" placeholder="Nombre de Usuario"
+                       name="nombreUsuario">
+                <label for="txtNombreUsuario">Usuario*</label>
+            </div>
+            <div>
+                <input type="password" id="txtPassword" placeholder="Contraseña"
+                       name="password">
+                <label for="txtPassword">Contraseña*</label>
+            </div>
+            <label for="formCredencialesUsuarioNuevo">Ingrese las credenciales de la nueva cuenta de cliente:</label>
+        </div>
+
+        <button type="submit">Crear cuenta</button>
+
+    </form>
+
+    <div>
+        <a asp-route="usuarios">Regresar</a>
+    </div>
+
+    @if (Model is null)
+    {
+        @("Say Hi")
+    }
+    else
+    {
+        @(Model.mensaje)
+    }
+
+</body>
+</html>

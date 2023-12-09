@@ -1,0 +1,85 @@
+﻿@using PaginaWebRestauranteHamburguesas.Areas.AdminProductos.ModelViews
+
+@model ModelViewCombos
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - PaginaWebRestauranteHamburguesas</title>
+</head>
+<body>
+
+    <h1>Administración de Combos</h1>
+
+    <div>
+        <a asp-action="AgregarCombo">Agregar combo</a>
+    </div>
+
+    <div>
+        <table>
+            <tr>
+                <th>Nombre</th>
+                <th>Categoria</th>
+                <th>Estado</th>
+                <th>Descuento</th>
+                <th></th>
+                <th></th>
+            </tr>
+            @foreach (var combo in Model.Combos)
+            {
+                <tr>
+                    <td>@combo.Nombre</td>
+                    <td>@combo.Categoria</td>
+                    <td>@combo.Estado</td>
+                    <td>@combo.Descuento %</td>
+                    <td>
+                        <a asp-action="AgregarComidasCombo"
+                        asp-route-idCombo="@combo.ComboId">
+                            Comidas
+                        </a>
+                    </td>
+                    <td>
+                        <a asp-action="DetallesCombo"
+                        asp-route-idCombo="@combo.ComboId">
+                            Detalles
+                        </a>
+                        <a asp-action="ModificarCombo"
+                        asp-route-idCombo="@combo.ComboId">
+                            Modificar
+                        </a>
+
+                        @if (combo.EstadoComboId == 1)
+                        {
+                            <a asp-action="DeshabilitarCombo"
+                            asp-route-idCombo="@combo.ComboId">
+                                Deshabilitar
+                            </a>
+                        }
+                        else
+                        {
+                            <a asp-action="HabilitarCombo"
+                               asp-route-idCombo="@combo.ComboId">
+                                Habilitar
+                            </a>
+                        }
+
+
+                        @if (combo.ComboEliminable)
+                        {
+                            <a asp-action="EliminarCombo"
+                               asp-route-idCombo="@combo.ComboId">
+                                Eliminar
+                            </a>
+                        }
+
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+
+</body>
+</html>

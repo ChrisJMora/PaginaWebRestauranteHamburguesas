@@ -1,0 +1,103 @@
+﻿@using PaginaWebRestauranteHamburguesas.Areas.AdminUsuarios.ModelViews;
+
+@model ModelViewDetalleOrden
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - PaginaWebRestauranteHamburguesas</title>
+</head>
+<body>
+
+    <h1>Detalle de la orden: @Model.OrdenId</h1>
+
+    <div id="encabezadoFactura">
+        <p>Cliente: @Model.ClienteOrden.Nombre @Model.ClienteOrden.Apellido</p>
+        <div>
+            <ul>
+                <li>@Model.ClienteOrden.Mail</li>
+                <li>@Model.ClienteOrden.Telefono</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div id="detalleCombos">
+        @foreach (var comboCarrito in Model.CombosCarrito)
+        {
+            <h2>@comboCarrito.Combo.Nombre</h2>
+            <p>Cantidad: @comboCarrito.Cantidad</p>
+
+            <div id="comidasCombo">
+                <table>
+                    <tr>
+                        <th>No</th>
+                        <th>Nombre</th>
+                        <th>Precio Unitario</th>
+                        <th>Cantidad</th>
+                        <th>Total</th>
+                    </tr>
+                @{int i = 1;}
+                @foreach (var comidaCarrito in comboCarrito.ComidasCarritoCombo)
+                {
+                    <tr>
+                        <td>@i</td>
+                        <td>@comidaCarrito.Comida.Nombre</td>
+                        <td>@comidaCarrito.Comida.Precio</td>
+                        <td>@comidaCarrito.Cantidad</td>
+                        @{double total = comidaCarrito.Comida.Precio * comidaCarrito.Cantidad;}
+                        <td>@total $</td>
+                    </tr>
+                    i++;
+                }
+                </table>
+            </div>
+            <p>Subtotal: @comboCarrito.Subtotal.ToString("F1") $</p>
+            <p>Descuento: @comboCarrito.Combo.Descuento %</p>
+            <p>Total Unitario: @comboCarrito.PrecioTotal.ToString("F1") $</p>
+            double totalCombo = comboCarrito.PrecioTotal * comboCarrito.Cantidad;
+            <p>Total: @totalCombo.ToString("F1") $</p>
+        }
+        <p>Total: @Model.PrecioTotalCombos.ToString("F1") $</p>
+        <label for="detalleCombos">Combos:</label>
+    </div>
+
+    <hr/>
+
+    <div id="detalleComidas">
+        <table>
+            <tr>
+                <th>No</th>
+                <th>Nombre</th>
+                <th>Precio Unitario</th>
+                <th>Cantidad</th>
+                <th>Total</th>
+            </tr>
+            @{ int j = 1; }
+            @foreach (var comidaCarrito in Model.ComidasCarrito)
+            {
+                double totalComida = comidaCarrito.Comida.Precio * comidaCarrito.Cantidad;
+                <tr>
+                    <td>@j</td>
+                    <td>@comidaCarrito.Comida.Nombre</td>
+                    <td>@comidaCarrito.Comida.Precio</td>
+                    <td>@comidaCarrito.Cantidad</td>
+                    <td>@totalComida $</td>
+                </tr>
+                j++;
+            }
+        </table>
+        <p>Total: @Model.PrecioTotalComidas.ToString("F1") $</p>
+        <label for="detalleComidas">Comidas:</label>
+    </div>
+
+    <hr />
+
+    <p>Total: @Model.PrecioTotal.ToString("F1") $</p>
+
+
+</body>
+</html>

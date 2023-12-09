@@ -1,0 +1,63 @@
+﻿@model string
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - PaginaWebRestauranteHamburguesas</title>
+</head>
+<body>
+
+    <h1>Crear cuenta de administrador</h1>
+
+    <form id="formCredencialesAdmin" method="post">
+
+        <div id="formCredencialesAdmin">
+            <div>
+                <input type="text" id="txtNombreUsuarioAdmin" placeholder="Nombre de usuario" 
+                    name="nombreUsuarioAdmin">
+                <label for="txtNombreUsuarioAdmin">Usuario*</label>
+            </div>
+            <div>
+                <input type="password" id="txtPasswordAdmin" placeholder="Contraseña" 
+                    name="passwordAdmin">
+                <label for="txtPasswordAdmin">Contraseña*</label>
+            </div>
+            <label for="formCredencialesAdmin" >Ingrese las credenciales de una cuenta de administrador válida:</label>
+        </div>
+
+        <div id="formCredencialesUsuarioNuevo">
+            <div>
+                <input type="text" id="txtNombreUsuario" placeholder="Nombre de Usuario" 
+                    name="nombreUsuario">
+                <label for="txtNombreUsuario">Usuario*</label>
+            </div>
+            <div>
+                <input type="password" id="txtPassword" placeholder="Contraseña" 
+                name="password">
+                <label for="txtPassword">Contraseña*</label>
+            </div>
+            <label for="formCredencialesUsuarioNuevo" >Ingrese las credenciales de la nueva cuenta de administrador:</label>
+        </div>
+
+        <button type="submit">Crear cuenta</button>
+
+    </form>
+
+
+    <div>
+        <a asp-route="usuarios">Regresar</a>
+    </div>
+
+    @if (Model is null)
+    {
+        @("Say Hi")
+    }
+    else
+    {
+        @(Model)
+    }
+
+</body>
+</html>

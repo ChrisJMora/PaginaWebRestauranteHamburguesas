@@ -1,0 +1,41 @@
+﻿@using PaginaWebRestauranteHamburguesas.Areas.AdminUsuarios.ModelViews;
+
+@model ModelViewCliente
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - PaginaWebRestauranteHamburguesas</title>
+</head>
+<body>
+
+    <h1>Ordenes del cliente: @Model.Nombre @Model.Apellido</h1>
+
+    <div>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Fecha</th>
+                <th></th>
+            </tr>
+            @foreach (var orden in Model.OrdenesCliente.Ordenes)
+            {
+                <tr>
+                    <td>@orden.OrdenId</td>
+                    <td>@orden.Fecha</td>
+                    <td>
+                        <a asp-action="DetallesOrden"
+                           asp-route-idOrden="@orden.OrdenId"
+                           asp-route-idCliente="@orden.ClienteId">
+                            Detalles
+                        </a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+
+</body>
+</html>

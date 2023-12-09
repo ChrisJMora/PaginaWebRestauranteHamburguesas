@@ -1,0 +1,78 @@
+﻿@using PaginaWebRestauranteHamburguesas.Areas.AdminProductos.ModelViews
+
+@model ModelViewComidas
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - PaginaWebRestauranteHamburguesas</title>
+</head>
+<body>
+
+    <h1>Administración de Comidas</h1>
+
+    <div>
+        <a asp-action="AgregarComida">Agregar comida</a>
+    </div>
+
+    <div>
+        <table>
+            <tr>
+                <th>Nombre</th>
+                <th>Categoria</th>
+                <th>Estado</th>
+                <th>Precio</th>
+                <th></th>
+            </tr>
+            @foreach (var comida in Model.Comidas)
+            {
+                <tr>
+                    <td>@comida.Nombre</td>
+                    <td>@comida.Categoria</td>
+                    <td>@comida.Estado</td>
+                    <td>@comida.Precio $</td>
+                    <td>
+                        <a asp-action="DetallesComida"
+                        asp-route-idComida="@comida.ComidaId">
+                            Detalles
+                        </a>
+                        <a asp-action="ModificarComida"
+                        asp-route-idComida="@comida.ComidaId">
+                            Modificar
+                        </a>
+
+                        @if (comida.EstadoId == 1)
+                        {
+                            <a asp-action="DeshabilitarComida"
+                            asp-route-idComida="@comida.ComidaId">
+                                Deshabilitar
+                            </a>
+                        }
+                        else
+                        {
+                            <a asp-action="HabilitarComida"
+                               asp-route-idComida="@comida.ComidaId">
+                                Habilitar
+                            </a>
+                        }
+
+
+                        @if (comida.ComidaEliminable)
+                        {
+                            <a asp-action="EliminarComida"
+                               asp-route-idComida="@comida.ComidaId">
+                                Eliminar
+                            </a>
+                        }
+
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+
+</body>
+</html>

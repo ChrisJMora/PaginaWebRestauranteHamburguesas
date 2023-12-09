@@ -1,0 +1,46 @@
+﻿@using PaginaWebRestauranteHamburguesas.Areas.AdminProductos.ModelViews;
+@using PaginaWebRestauranteHamburguesas.ModelViews;
+
+@model ModelViewComboComida
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - PaginaWebRestauranteHamburguesas</title>
+</head>
+<body>
+
+    <h1>Detalles combo</h1>
+
+    <p>Nombre: @Model.MvCombo.Nombre</p>
+    <p>Descripción: @Model.MvCombo.Descripcion</p>
+    <p>Categoría: @Model.MvCombo.Categoria</p>
+    <p>Precio: @Model.MvCombo.Descuento %</p>
+    <p>Estado: @Model.MvCombo.Estado</p>
+
+    <table>
+        <tr>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Categoria</th>
+            <th>Cantidad</th>
+        </tr>
+        @foreach (var comida in Model.MvComidasCombo.Comidas)
+        {
+            <tr>
+                <td>@comida.Nombre</td>
+                <td>@comida.Precio</td>
+                <td>@comida.Categoria</td>
+                <td>@Model.ComidasCombo[comida.ComidaId]</td>
+            </tr>
+        }
+    </table>
+
+    <div>
+        <a asp-action="PaginaPrincipalCombo">Regresar</a>
+    </div>
+
+</body>
+</html>

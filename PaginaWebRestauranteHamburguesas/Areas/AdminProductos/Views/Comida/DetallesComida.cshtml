@@ -1,0 +1,28 @@
+﻿@using PaginaWebRestauranteHamburguesas.Areas.AdminProductos.ModelViews;
+@using PaginaWebRestauranteHamburguesas.ModelViews;
+
+@model ModelViewComida
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - PaginaWebRestauranteHamburguesas</title>
+</head>
+<body>
+
+    <h1>Detalles comida</h1>
+
+    <p>Nombre: @Model.Nombre</p>
+    <p>Descripción: @Model.Descripcion</p>
+    <p>Categoría: @Model.Categoria</p>
+    <p>Precio: @Model.Precio $</p>
+    <p>Estado: @Model.Estado</p>
+
+    <div>
+        <a asp-action="PaginaPrincipalComida">Regresar</a>
+    </div>
+
+</body>
+</html>
