@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - PaginaWebRestauranteHamburguesas</title>
 </head>
+
 <body>
 
     <h1>Modificar cuenta de administrador</h1>
@@ -56,12 +57,13 @@
                     {
                         if (Model.entity.EstadoId == estado.Id)
                         {
-                            <option value="@estado.Id" selected>@estado.Nombre</option>
-         Etiqueta         }
+                            <option value="@estado.Id" selected>@estado.Etiqueta</option>
+                        }
                         else
                         {
-                            <option value="@estado.Id">@estado.Nombre</option>
-                      Etiqueta                   }
+                            <option value="@estado.Id">@estado.Etiqueta</option>
+                        }
+                    }
                 </select>
             </div>
             <label for="selectEstadosUsuario">Escoja un estado:</label>

@@ -16,7 +16,8 @@
             <select name="tipoUsuario">
                 @foreach (var tipo in Model.ModelViewTipos.Tipos)
                 {
-                    <option value="@tipo.Id">@tipo.Nombre</optEtiqueta                }
+                    <option value="@tipo.Id">@tipo.Etiqueta</option>
+                }
             </select>
             <button asp-route="crearUsuarios" type="submit">
                 Crear Usuario

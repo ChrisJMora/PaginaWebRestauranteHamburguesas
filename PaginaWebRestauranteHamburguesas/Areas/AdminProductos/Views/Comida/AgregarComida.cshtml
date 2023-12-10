@@ -36,7 +36,8 @@
             <select name="categoriaComida">
                 @foreach (var categoria in Model.entity.Categorias)
                 {
-                    <option value="@categoria.Id">@categoria.Nombre</option>Etiqueta            }
+                    <option value="@categoria.Id">@categoria.Etiqueta</option>
+                }
             </select>
             <label for="formDatosComida">Ingrese los datos de la comida:</label>
         </div>

@@ -103,12 +103,13 @@
                     {
                         if (Model.entity.EstadoId == estado.Id)
                         {
-                            <option value="@estado.Id" selected>@estado.Nombre</option>
-         Etiqueta         }
+                            <option value="@estado.Id" selected>@estado.Etiqueta</option>
+                        }
                         else
                         {
-                            <option value="@estado.Id">@estado.Nombre</option>
-                      Etiqueta                   }
+                            <option value="@estado.Id">@estado.Etiqueta</option>
+                        }
+                    }
                 </select>
             </div>
             <label for="selectEstadosUsuario">Escoja un estado:</label>
