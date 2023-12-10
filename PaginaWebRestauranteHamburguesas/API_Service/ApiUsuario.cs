@@ -14,7 +14,7 @@ namespace PaginaWebRestauranteHamburguesas.API_Service
 
         private HttpClient client = new HttpClient();
 
-        private readonly string _url = "https://apirestaurantehamburguesas20231128183324.azurewebsites.net/api/Usuario";
+        private readonly string _url = "https://apirestaurantehamburguesas20231210132143.azurewebsites.net/api/Usuario";
 
         //Constructor
         private ApiUsuario() { }
