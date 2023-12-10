@@ -24,8 +24,9 @@ namespace PaginaWebRestauranteHamburguesas.Areas.AdminProductos.Controllers
                 await modelViewCombos.Inicializar(combos);
                 return View("PaginaPrincipalCombo",modelViewCombos);
             }
-            catch(Exception)
+            catch(Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 return RedirectToAction("PaginaPrincipal","Admin", new { area = "AccesoAdmin" });
             }
         }

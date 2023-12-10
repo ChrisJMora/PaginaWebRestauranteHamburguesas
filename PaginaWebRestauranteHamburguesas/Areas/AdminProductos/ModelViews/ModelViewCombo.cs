@@ -28,11 +28,11 @@ namespace PaginaWebRestauranteHamburguesas.Areas.AdminProductos.ModelViews
 
         public async Task Inicializar(Combo combo)
         {
-            CategoriaCombo? categoria = await _apiProducto.ObtenerCategoriaCombo(combo.IdEstadoCombo);
+            CategoriaCombo? categoria = await _apiProducto.ObtenerCategoriaCombo(combo.IdCategoriaCombo);
             if (categoria == null) throw new Exception($"""
                 La categoria del combo: {combo.Nombre} no fue encontrada
                 """);
-            Estado? estado = await _apiEstado.ObtenerEstado(combo.IdCategoriaCombo);
+            Estado? estado = await _apiEstado.ObtenerEstado(combo.IdEstadoCombo);
             if (estado == null) throw new Exception($"""
                 El estado del combo: {combo.Nombre} no fue encontrado
                 """);
